@@ -5,18 +5,18 @@ import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 class Cells {
-  private final StateRepresentation stateRepresentation;
+  private final StateRepresentations stateRepresentations;
   private final String[][] cells;
 
-  static Cells fromString(String table, StateRepresentation stateRepresentation) {
+  static Cells fromString(String table, StateRepresentations stateRepresentations) {
     String[] rows = table.split("\n");
     String[][] cells = Arrays.stream(rows).map(row -> row.split("")).toArray(String[][]::new);
-    return new Cells(cells, stateRepresentation);
+    return new Cells(cells, stateRepresentations);
   }
 
-  private Cells(String[][] cells, StateRepresentation stateRepresentation) {
+  private Cells(String[][] cells, StateRepresentations stateRepresentations) {
     this.cells = cells;
-    this.stateRepresentation = stateRepresentation;
+    this.stateRepresentations = stateRepresentations;
   }
 
   int getWidth() {
@@ -29,7 +29,7 @@ class Cells {
 
   boolean isAlive(CellIndex index) {
     try {
-      return stateRepresentation.alive().equals(cells[index.getHeight()][index.getWidth()]);
+      return stateRepresentations.alive().equals(cells[index.getHeight()][index.getWidth()]);
     } catch (ArrayIndexOutOfBoundsException e) {
       return false;
     }
@@ -50,29 +50,29 @@ class Cells {
     return new NextStepBuilder(
         cells.getHeight(),
         cells.getWidth(),
-        cells.stateRepresentation
+        cells.stateRepresentations
     );
   }
 
   static class NextStepBuilder {
-    private final StateRepresentation stateRepresentation;
+    private final StateRepresentations stateRepresentations;
     private final String[][] cells;
 
-    private NextStepBuilder(int height, int width, StateRepresentation stateRepresentation) {
+    private NextStepBuilder(int height, int width, StateRepresentations stateRepresentations) {
       this.cells = new String[height][width];
-      this.stateRepresentation = stateRepresentation;
+      this.stateRepresentations = stateRepresentations;
     }
 
     void setAlive(CellIndex index) {
-      cells[index.getHeight()][index.getWidth()] = stateRepresentation.alive();
+      cells[index.getHeight()][index.getWidth()] = stateRepresentations.alive();
     }
 
     void setDead(CellIndex index) {
-      cells[index.getHeight()][index.getWidth()] = stateRepresentation.dead();
+      cells[index.getHeight()][index.getWidth()] = stateRepresentations.dead();
     }
 
     Cells build() {
-      return new Cells(cells, stateRepresentation);
+      return new Cells(cells, stateRepresentations);
     }
   }
 
