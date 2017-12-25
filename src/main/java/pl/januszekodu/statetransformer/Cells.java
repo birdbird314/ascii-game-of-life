@@ -29,7 +29,7 @@ class Cells {
 
   boolean isAlive(CellIndex index) {
     try {
-      return stateRepresentations.alive().equals(cells[index.getHeight()][index.getWidth()]);
+      return stateRepresentations.alive().equals(cellAt(index));
     } catch (ArrayIndexOutOfBoundsException e) {
       return false;
     }
@@ -37,6 +37,10 @@ class Cells {
 
   boolean isDead(CellIndex index) {
     return !isAlive(index);
+  }
+
+  private String cellAt(CellIndex index) {
+    return cells[index.getHeight()][index.getWidth()];
   }
 
   @Override
