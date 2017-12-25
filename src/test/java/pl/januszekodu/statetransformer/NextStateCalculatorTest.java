@@ -19,7 +19,7 @@ public class NextStateCalculatorTest {
 
   @Before
   public void setUp() {
-    nextStateCalculator = new NextStateCalculator();
+    nextStateCalculator = new NextStateCalculator(".", "*");
   }
 
   @Test

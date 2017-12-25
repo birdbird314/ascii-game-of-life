@@ -5,20 +5,21 @@ import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 class Cells {
-
-  private static final String ALIVE = "*";
-  private static final String DEAD = ".";
+  private final String dead;
+  private final String alive;
 
   private final String[][] cells;
 
-  static Cells fromString(String table) {
+  static Cells fromString(String table, String dead, String alive) {
     String[] rows = table.split("\n");
     String[][] cells = Arrays.stream(rows).map(row -> row.split("")).toArray(String[][]::new);
-    return new Cells(cells);
+    return new Cells(cells, dead, alive);
   }
 
-  private Cells(String[][] cells) {
+  private Cells(String[][] cells, String dead, String alive) {
     this.cells = cells;
+    this.dead = dead;
+    this.alive = alive;
   }
 
   int getWidth() {
@@ -31,7 +32,7 @@ class Cells {
 
   boolean isAlive(CellIndex index) {
     try {
-      return ALIVE.equals(cells[index.getHeight()][index.getWidth()]);
+      return alive.equals(cells[index.getHeight()][index.getWidth()]);
     } catch (ArrayIndexOutOfBoundsException e) {
       return false;
     }
@@ -49,26 +50,35 @@ class Cells {
   }
 
   static NextStepBuilder aNextStepBuilderFor(Cells cells) {
-    return new NextStepBuilder(cells.getHeight(), cells.getWidth());
+    return new NextStepBuilder(
+        cells.getHeight(),
+        cells.getWidth(),
+        cells.dead,
+        cells.alive
+    );
   }
 
   static class NextStepBuilder {
     private final String[][] cells;
+    private final String dead;
+    private final String alive;
 
-    private NextStepBuilder(int height, int width) {
+    private NextStepBuilder(int height, int width, String dead, String alive) {
       this.cells = new String[height][width];
+      this.dead = dead;
+      this.alive = alive;
     }
 
     void setAlive(CellIndex index) {
-      cells[index.getHeight()][index.getWidth()] = ALIVE;
+      cells[index.getHeight()][index.getWidth()] = alive;
     }
 
     void setDead(CellIndex index) {
-      cells[index.getHeight()][index.getWidth()] = DEAD;
+      cells[index.getHeight()][index.getWidth()] = dead;
     }
 
     Cells build() {
-      return new Cells(cells);
+      return new Cells(cells, dead, alive);
     }
   }
 

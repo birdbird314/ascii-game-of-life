@@ -8,8 +8,16 @@ import static pl.januszekodu.statetransformer.ShouldSetAlivePredicate.shouldSetA
 
 public class NextStateCalculator {
 
+  private final String dead;
+  private final String alive;
+
+  public NextStateCalculator(String dead, String alive) {
+    this.dead = dead;
+    this.alive = alive;
+  }
+
   public String calculate(String stringCells) {
-    Cells cells = Cells.fromString(stringCells);
+    Cells cells = Cells.fromString(stringCells, dead, alive);
     return calculateNextStep(cells).toString();
   }
 
