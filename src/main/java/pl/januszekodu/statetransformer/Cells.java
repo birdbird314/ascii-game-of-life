@@ -5,21 +5,18 @@ import java.util.Arrays;
 import static java.util.stream.Collectors.joining;
 
 class Cells {
-  private final String dead;
-  private final String alive;
-
+  private final StateRepresentation stateRepresentation;
   private final String[][] cells;
 
-  static Cells fromString(String table, String dead, String alive) {
+  static Cells fromString(String table, StateRepresentation stateRepresentation) {
     String[] rows = table.split("\n");
     String[][] cells = Arrays.stream(rows).map(row -> row.split("")).toArray(String[][]::new);
-    return new Cells(cells, dead, alive);
+    return new Cells(cells, stateRepresentation);
   }
 
-  private Cells(String[][] cells, String dead, String alive) {
+  private Cells(String[][] cells, StateRepresentation stateRepresentation) {
     this.cells = cells;
-    this.dead = dead;
-    this.alive = alive;
+    this.stateRepresentation = stateRepresentation;
   }
 
   int getWidth() {
@@ -32,7 +29,7 @@ class Cells {
 
   boolean isAlive(CellIndex index) {
     try {
-      return alive.equals(cells[index.getHeight()][index.getWidth()]);
+      return stateRepresentation.alive().equals(cells[index.getHeight()][index.getWidth()]);
     } catch (ArrayIndexOutOfBoundsException e) {
       return false;
     }
@@ -53,32 +50,29 @@ class Cells {
     return new NextStepBuilder(
         cells.getHeight(),
         cells.getWidth(),
-        cells.dead,
-        cells.alive
+        cells.stateRepresentation
     );
   }
 
   static class NextStepBuilder {
+    private final StateRepresentation stateRepresentation;
     private final String[][] cells;
-    private final String dead;
-    private final String alive;
 
-    private NextStepBuilder(int height, int width, String dead, String alive) {
+    private NextStepBuilder(int height, int width, StateRepresentation stateRepresentation) {
       this.cells = new String[height][width];
-      this.dead = dead;
-      this.alive = alive;
+      this.stateRepresentation = stateRepresentation;
     }
 
     void setAlive(CellIndex index) {
-      cells[index.getHeight()][index.getWidth()] = alive;
+      cells[index.getHeight()][index.getWidth()] = stateRepresentation.alive();
     }
 
     void setDead(CellIndex index) {
-      cells[index.getHeight()][index.getWidth()] = dead;
+      cells[index.getHeight()][index.getWidth()] = stateRepresentation.dead();
     }
 
     Cells build() {
-      return new Cells(cells, dead, alive);
+      return new Cells(cells, stateRepresentation);
     }
   }
 
