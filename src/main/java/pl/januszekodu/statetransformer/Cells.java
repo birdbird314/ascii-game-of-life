@@ -41,10 +41,6 @@ class Cells {
     return !isAlive(index);
   }
 
-  int countAliveNeighbours(CellIndex index) {
-    return (int) index.getNeighbours().filter(this::isAlive).count();
-  }
-
   @Override
   public String toString() {
     return Arrays.stream(cells)

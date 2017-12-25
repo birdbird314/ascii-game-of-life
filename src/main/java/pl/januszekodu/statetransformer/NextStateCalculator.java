@@ -2,11 +2,9 @@ package pl.januszekodu.statetransformer;
 
 import pl.januszekodu.statetransformer.Cells.NextStepBuilder;
 
-import java.util.function.Predicate;
-
-import static java.util.Arrays.asList;
 import static pl.januszekodu.statetransformer.CellIndex.allPossibleIndexes;
 import static pl.januszekodu.statetransformer.Cells.aNextStepBuilderFor;
+import static pl.januszekodu.statetransformer.ShouldSetAlivePredicate.shouldSetAlivePredicate;
 
 public class NextStateCalculator {
 
@@ -28,19 +26,5 @@ public class NextStateCalculator {
     } else {
       resultBuilder.setDead(index);
     }
-  }
-
-  private static Predicate<CellIndex> shouldSetAlivePredicate(Cells cells) {
-    return index ->
-             isAliveCellWithTwoOrThreeAliveNeighbours(cells, index)
-          || isDeadCellWithThreeAliveNeighbours(cells, index);
-  }
-
-  private static boolean isDeadCellWithThreeAliveNeighbours(Cells cells, CellIndex index) {
-    return cells.isDead(index) && cells.countAliveNeighbours(index) == 3;
-  }
-
-  private static boolean isAliveCellWithTwoOrThreeAliveNeighbours(Cells cells, CellIndex index) {
-    return cells.isAlive(index) && asList(2, 3).contains(cells.countAliveNeighbours(index));
   }
 }
