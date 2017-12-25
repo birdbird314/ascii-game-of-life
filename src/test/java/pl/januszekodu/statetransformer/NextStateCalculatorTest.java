@@ -15,16 +15,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class NextStateCalculatorTest {
 
-  private NextStateCalculator stateTransformer;
+  private NextStateCalculator nextStateCalculator;
 
   @Before
   public void setUp() {
-    stateTransformer = new NextStateCalculator();
+    nextStateCalculator = new NextStateCalculator();
   }
 
   @Test
   public void shouldDoNothingIfTableConsistOfOneDeadCell() {
-    String result = stateTransformer.calculate(".");
+    String result = nextStateCalculator.calculate(".");
 
     assertThat(result).isEqualTo(".");
   }
@@ -39,7 +39,7 @@ public class NextStateCalculatorTest {
   @Test
   @Parameters(method = "lessThanTwoLiveNeighboursParams")
   public void shouldKillLiveCellWithLessThatTwoLiveNeighbours(String cells, String expected) {
-    String result = stateTransformer.calculate(cells);
+    String result = nextStateCalculator.calculate(cells);
 
     assertThat(result).isEqualTo(expected);
   }
@@ -54,14 +54,14 @@ public class NextStateCalculatorTest {
   @Test
   @Parameters(method = "twoLiveNeighboursParams")
   public void shouldNotKillAliveCellWithTwoLiveNeighbours(String cells, String expected) {
-    String result = stateTransformer.calculate(cells);
+    String result = nextStateCalculator.calculate(cells);
 
     assertThat(result).isEqualTo(expected);
   }
 
   @Test
   public void shouldBreedDeathCellWithThreeAliveNeighbours() {
-    String result = stateTransformer.calculate(cells(
+    String result = nextStateCalculator.calculate(cells(
         "**",
         "*."
     ));
@@ -74,7 +74,7 @@ public class NextStateCalculatorTest {
 
   @Test
   public void shouldNotKillAliveCellWithThreeAliveNeighbours() {
-    String result = stateTransformer.calculate(cells(
+    String result = nextStateCalculator.calculate(cells(
         "**.",
         ".**"
     ));
@@ -87,7 +87,7 @@ public class NextStateCalculatorTest {
 
   @Test
   public void shouldKillAliveCellWithMoreThanThreeAliveNeighbours() {
-    String result = stateTransformer.calculate(cells(
+    String result = nextStateCalculator.calculate(cells(
         "***",
         ".**"
     ));
