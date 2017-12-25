@@ -26,11 +26,11 @@ public class NextStateCalculator {
     return nextStepBuilder.build();
   }
 
-  private static void setNextStepState(Cells cells, NextStepBuilder resultBuilder, CellIndex index) {
+  private static void setNextStepState(Cells cells, NextStepBuilder nextStepBuilder, CellIndex index) {
     if (shouldSetAlivePredicate(cells).test(index)) {
-      resultBuilder.setAlive(index);
+      nextStepBuilder.setAlive(index);
     } else {
-      resultBuilder.setDead(index);
+      nextStepBuilder.setDead(index);
     }
   }
 }
