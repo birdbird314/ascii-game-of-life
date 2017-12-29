@@ -1,4 +1,4 @@
-package pl.januszekodu.runner;
+package pl.januszekodu.gameoflife.runner;
 
 class StatePrinter {
   void clearAndPrint(String state) {

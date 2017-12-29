@@ -1,4 +1,4 @@
-package pl.januszekodu.runner;
+package pl.januszekodu.gameoflife.runner;
 
 import static java.lang.Thread.sleep;
 

@@ -1,6 +1,6 @@
-package pl.januszekodu.statetransformer;
+package pl.januszekodu.gameoflife.statetransformer;
 
-import pl.januszekodu.Configuration;
+import pl.januszekodu.gameoflife.Configuration;
 
 public class NextStateCalculatorFactory {
   private NextStateCalculatorFactory() {

@@ -1,8 +1,8 @@
-package pl.januszekodu;
+package pl.januszekodu.gameoflife;
 
-import pl.januszekodu.runner.StepRunner;
+import pl.januszekodu.gameoflife.runner.StepRunner;
 
-import static pl.januszekodu.runner.StepRunnerFactory.aStepRunner;
+import static pl.januszekodu.gameoflife.runner.StepRunnerFactory.aStepRunner;
 
 public class App {
   private final StepRunner stepRunner;

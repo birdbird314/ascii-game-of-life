@@ -1,4 +1,4 @@
-package pl.januszekodu.statetransformer;
+package pl.januszekodu.gameoflife.statetransformer;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;

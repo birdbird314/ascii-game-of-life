@@ -1,6 +1,6 @@
-package pl.januszekodu.runner;
+package pl.januszekodu.gameoflife.runner;
 
-import pl.januszekodu.statetransformer.NextStateCalculator;
+import pl.januszekodu.gameoflife.statetransformer.NextStateCalculator;
 
 public class StepRunner {
 

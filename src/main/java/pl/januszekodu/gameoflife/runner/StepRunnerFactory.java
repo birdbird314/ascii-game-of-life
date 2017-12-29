@@ -1,8 +1,8 @@
-package pl.januszekodu.runner;
+package pl.januszekodu.gameoflife.runner;
 
-import pl.januszekodu.Configuration;
+import pl.januszekodu.gameoflife.Configuration;
 
-import static pl.januszekodu.statetransformer.NextStateCalculatorFactory.aNextStateCalculator;
+import static pl.januszekodu.gameoflife.statetransformer.NextStateCalculatorFactory.aNextStateCalculator;
 
 public class StepRunnerFactory {
   private StepRunnerFactory() {

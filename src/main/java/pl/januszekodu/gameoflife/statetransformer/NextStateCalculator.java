@@ -1,10 +1,10 @@
-package pl.januszekodu.statetransformer;
+package pl.januszekodu.gameoflife.statetransformer;
 
-import pl.januszekodu.statetransformer.Cells.NextStepBuilder;
+import pl.januszekodu.gameoflife.statetransformer.Cells.NextStepBuilder;
 
-import static pl.januszekodu.statetransformer.CellIndex.allPossibleIndexes;
-import static pl.januszekodu.statetransformer.Cells.aNextStepBuilderFor;
-import static pl.januszekodu.statetransformer.ShouldSetAlivePredicate.shouldSetAlivePredicate;
+import static pl.januszekodu.gameoflife.statetransformer.CellIndex.allPossibleIndexes;
+import static pl.januszekodu.gameoflife.statetransformer.Cells.aNextStepBuilderFor;
+import static pl.januszekodu.gameoflife.statetransformer.ShouldSetAlivePredicate.shouldSetAlivePredicate;
 
 public class NextStateCalculator {
 

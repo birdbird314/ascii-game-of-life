@@ -1,4 +1,4 @@
-package pl.januszekodu;
+package pl.januszekodu.gameoflife;
 
 public interface Configuration {
   int getFramesPerMinute();
