@@ -14,7 +14,7 @@ class StatePrinter {
   }
 
   private void print(String text) {
-    System.out.print(text);
+    System.out.println(text);
     System.out.flush();
   }
 }
