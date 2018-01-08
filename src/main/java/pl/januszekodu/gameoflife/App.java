@@ -1,8 +1,10 @@
 package pl.januszekodu.gameoflife;
 
 import pl.januszekodu.gameoflife.runner.StepRunner;
+import pl.januszekodu.gameoflife.stateretriever.Preset;
 
 import static pl.januszekodu.gameoflife.runner.StepRunnerFactory.aStepRunner;
+import static pl.januszekodu.gameoflife.stateretriever.InitialStateRetrieverFactory.anInitialStateRetriever;
 
 public class App {
   private final StepRunner stepRunner;
@@ -17,11 +19,6 @@ public class App {
   }
 
   public static void main(String[] args) {
-    String blinker =
-        ".....\n" +
-        ".***.\n" +
-        ".....";
-
     Configuration configuration = new Configuration() {
       @Override
       public int getFramesPerMinute() {
@@ -40,7 +37,7 @@ public class App {
 
       @Override
       public String getInitialState() {
-        return blinker;
+        return anInitialStateRetriever(Preset.BLINKER).retrieve();
       }
     };
 
