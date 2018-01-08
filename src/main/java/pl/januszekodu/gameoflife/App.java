@@ -32,7 +32,7 @@ public class App {
 
       @Override
       public String getAliveCellRepresentation() {
-        return "*";
+        return "O";
       }
 
       @Override
