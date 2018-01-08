@@ -22,7 +22,7 @@ public class App {
     Configuration configuration = new Configuration() {
       @Override
       public int getFramesPerMinute() {
-        return 60;
+        return 160;
       }
 
       @Override
@@ -37,7 +37,7 @@ public class App {
 
       @Override
       public String getInitialState() {
-        return anInitialStateRetriever(Preset.BLINKER).retrieve();
+        return anInitialStateRetriever(Preset.PULSAR).retrieve();
       }
     };
 
