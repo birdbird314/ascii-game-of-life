@@ -1,7 +1,7 @@
 package pl.januszekodu.gameoflife.stateretriever;
 
 public enum Preset implements FileNameAware {
-  BLINKER("blinker");
+  BLINKER("blinker"), PULSAR("pulsar");
 
   private final String fileName;
 
