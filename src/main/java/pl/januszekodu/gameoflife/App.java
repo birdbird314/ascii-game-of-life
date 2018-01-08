@@ -22,7 +22,7 @@ public class App {
     Configuration configuration = new Configuration() {
       @Override
       public int getFramesPerMinute() {
-        return 160;
+        return 200;
       }
 
       @Override
