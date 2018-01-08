@@ -5,7 +5,7 @@ public class InitialStateRetriever {
   private final FileReader reader;
   private final FileNameAware preset;
 
-  public InitialStateRetriever(FileReader reader, FileNameAware preset) {
+  InitialStateRetriever(FileReader reader, FileNameAware preset) {
     this.reader = reader;
     this.preset = preset;
   }

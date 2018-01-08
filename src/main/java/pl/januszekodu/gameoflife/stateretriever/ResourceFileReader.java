@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ResourceFileReader implements FileReader{
-
+class ResourceFileReader implements FileReader{
   @Override
   public String read(String path) {
     try (BufferedReader reader = getResourceBufferedReader(path)) {

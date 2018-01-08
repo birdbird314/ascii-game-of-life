@@ -1,5 +1,5 @@
 package pl.januszekodu.gameoflife.stateretriever;
 
-public interface FileReader {
+interface FileReader {
   String read(String path);
 }
