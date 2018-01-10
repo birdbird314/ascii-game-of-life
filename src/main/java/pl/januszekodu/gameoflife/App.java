@@ -19,6 +19,10 @@ public class App {
 
   public static void main(String[] args) {
     Configuration configuration = aCliArgumentsParser().parse(args);
-    new App(aStepRunner(configuration)).run();
+    anAppWithConfiguration(configuration).run();
+  }
+
+  private static App anAppWithConfiguration(Configuration configuration) {
+    return new App(aStepRunner(configuration));
   }
 }
