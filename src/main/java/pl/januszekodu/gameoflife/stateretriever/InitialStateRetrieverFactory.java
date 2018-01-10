@@ -1,11 +1,18 @@
 package pl.januszekodu.gameoflife.stateretriever;
 
+import static pl.januszekodu.gameoflife.stateretriever.Preset.PULSAR;
+
 public class InitialStateRetrieverFactory {
 
-  private InitialStateRetrieverFactory() {
+  public static InitialStateRetrieverFactory anInitialStateRetrieverFactory() {
+    return new InitialStateRetrieverFactory();
   }
 
-  public static InitialStateRetriever anInitialStateRetriever(Preset preset) {
+  static InitialStateRetriever anInitialStateRetriever(Preset preset) {
     return new InitialStateRetriever(new ResourceFileReader(), preset);
+  }
+
+  public InitialStateRetriever createDefaultInitialStateRetriever() {
+    return anInitialStateRetriever(PULSAR);
   }
 }

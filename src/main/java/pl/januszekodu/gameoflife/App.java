@@ -1,10 +1,9 @@
 package pl.januszekodu.gameoflife;
 
 import pl.januszekodu.gameoflife.runner.StepRunner;
-import pl.januszekodu.gameoflife.stateretriever.Preset;
 
+import static pl.januszekodu.gameoflife.argsparser.CliArgumentsParserFactory.aCliArgumentsParser;
 import static pl.januszekodu.gameoflife.runner.StepRunnerFactory.aStepRunner;
-import static pl.januszekodu.gameoflife.stateretriever.InitialStateRetrieverFactory.anInitialStateRetriever;
 
 public class App {
   private final StepRunner stepRunner;
@@ -19,28 +18,7 @@ public class App {
   }
 
   public static void main(String[] args) {
-    Configuration configuration = new Configuration() {
-      @Override
-      public int getFramesPerMinute() {
-        return 200;
-      }
-
-      @Override
-      public String getDeadCellRepresentation() {
-        return ".";
-      }
-
-      @Override
-      public String getAliveCellRepresentation() {
-        return "O";
-      }
-
-      @Override
-      public String getInitialState() {
-        return anInitialStateRetriever(Preset.PULSAR).retrieve();
-      }
-    };
-
+    Configuration configuration = aCliArgumentsParser().parse(args);
     new App(aStepRunner(configuration)).run();
   }
 }
